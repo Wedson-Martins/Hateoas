@@ -1,0 +1,60 @@
+package com.wcode.api_hateoas.services;
+
+import java.util.Optional;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wcode.api_hateoas.models.Car;
+import com.wcode.api_hateoas.repositories.CarRepository;
+
+@Service
+public class CarServiceImp implements CarService {
+
+	@Autowired
+	CarRepository carRepository;
+
+	@Override
+	public List<Car> getAllCars() {
+		return this.carRepository.findAll();
+	}
+
+	@Override
+	public Optional<Car> getOneCar(Long id) {
+		Optional<Car> car = this.carRepository.findById(id);
+		return car;
+	}
+
+	@Override
+	public Optional<Car> updateCar(Long id, Car car) {
+		Car carExist = this.getOneCar(id).get();
+		if (carExist == null) {
+			return false;
+		} else {
+			carExist.setId(id);
+			carExist.setFabricante(car.getFabricante());
+			carExist.setModelo(car.getModelo());
+			carExist.setAno(car.getAno());
+			this.carRepository.save(carExist);
+			return true;
+		}
+	}
+
+	@Override
+	public Boolean removeCar(Long id) {
+		Car carExist = this.getOneCar(id).get();
+		if (carExist == null) {
+			return false;
+		} else {
+			this.carRepository.deleteById(id);
+			return true;
+		}
+	}
+
+	@Override
+	public Car addCar(Car car) {
+		return this.carRepository.save(car);
+	}
+
+}
