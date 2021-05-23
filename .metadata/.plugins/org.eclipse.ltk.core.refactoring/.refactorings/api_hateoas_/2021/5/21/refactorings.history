@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;id&apos; in &apos;com.wcode.api_hateoas.models.Car&apos; to &apos;idCar&apos;&#x0D;&#x0A;- Original project: &apos;api_hateoas_&apos;&#x0D;&#x0A;- Original element: &apos;com.wcode.api_hateoas.models.Car.id&apos;&#x0D;&#x0A;- Renamed element: &apos;com.wcode.api_hateoas.models.Car.idCar&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;id&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src\/main\/java&lt;com.wcode.api_hateoas.models{Car.java[Car^id" name="idCar" references="true" setter="false" stamp="1621714244451" textual="false" version="1.0"/>
+</session>

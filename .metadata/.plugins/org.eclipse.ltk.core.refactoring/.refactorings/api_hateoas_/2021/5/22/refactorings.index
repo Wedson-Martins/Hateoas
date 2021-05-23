@@ -1,0 +1,17 @@
+1621773795193	Delete element
+1621773807358	Delete element
+1621773815141	Delete elements
+1621773827270	Delete element
+1621773833856	Delete element
+1621773839505	Delete element
+1621776427249	Delete element
+1621776440845	Delete element
+1621793090265	Rename method 'getAllCarsPaginationByName'
+1621797189433	Rename type 'MyFileNotFoundException'
+1621798527051	Rename field 'raiz'
+1621798668683	Rename field 'diretorioFotos'
+1621798688512	Rename local variable 'foto'
+1621798698586	Rename local variable 'arquivo'
+1621798707164	Rename local variable 'diretorio'
+1621798717189	Rename local variable 'diretorioPath'
+1621798725280	Rename local variable 'arquivoPath'

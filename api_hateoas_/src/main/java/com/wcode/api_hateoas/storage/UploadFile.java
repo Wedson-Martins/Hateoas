@@ -1,0 +1,40 @@
+package com.wcode.api_hateoas.storage;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+public class UploadFile {
+
+	@Component
+	public class Disco {
+
+		@Value("${file.drive.source}")
+		private String source;
+
+		@Value("${file.dir.source-image}")
+		private String dirPhotos;
+
+		public void salvarFoto(MultipartFile photo) {
+			this.salvar(this.dirPhotos, photo);
+		}
+
+		public void salvar(String dir, MultipartFile file) {
+			Path dirPath = Paths.get(this.source, dir);
+			Path filePath = dirPath.resolve(file.getOriginalFilename());
+
+			try {
+				Files.createDirectories(dirPath);
+				file.transferTo(filePath.toFile());
+			} catch (IOException e) {
+				throw new RuntimeException("Problems trying to save file.", e);
+			}
+		}
+	}
+
+}

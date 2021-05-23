@@ -1,5 +1,0 @@
-package com.wcode.api_hateoas.config;
-
-public class WebConfig {
-
-}
