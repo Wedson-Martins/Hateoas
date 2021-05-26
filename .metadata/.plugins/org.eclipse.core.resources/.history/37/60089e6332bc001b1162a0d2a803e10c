@@ -1,0 +1,5 @@
+package com.wcode.api_hateoas.controllers;
+
+public class ImageController {
+
+}

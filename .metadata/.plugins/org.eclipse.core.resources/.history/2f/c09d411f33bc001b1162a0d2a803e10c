@@ -1,0 +1,14 @@
+package com.wcode.api_hateoas.controllers;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping
+public class ImageController {
+	
+	public void 
+	
+	
+	
+}

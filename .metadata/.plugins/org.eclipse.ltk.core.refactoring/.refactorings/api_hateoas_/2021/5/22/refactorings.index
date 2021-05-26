@@ -15,3 +15,8 @@
 1621798707164	Rename local variable 'diretorio'
 1621798717189	Rename local variable 'diretorioPath'
 1621798725280	Rename local variable 'arquivoPath'
+1621820327308	Copy compilation unit
+1621823272882	Rename method 'salvarFoto'
+1621823284647	Rename local variable 'photo'
+1621823300807	Rename field 'dirPhotos'
+1621915240486	Move compilation unit

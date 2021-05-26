@@ -1,0 +1,10 @@
+package com.wcode.api_hateoas.services;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public interface ImageService {
+	
+	public void addAdressImage(String adress);
+	
+	
+}

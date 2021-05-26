@@ -3,7 +3,6 @@ package com.wcode.api_hateoas.controllers;
 import java.util.List;
 import java.util.Optional;
 
-//import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -32,6 +31,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.wcode.api_hateoas.models.Car;
 import com.wcode.api_hateoas.services.CarService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value = "CarEndPoint")
 @RestController
 @RequestMapping
 public class CarController {
@@ -39,14 +42,10 @@ public class CarController {
 	@Autowired
 	CarService carService;
 
-	@PostMapping("/test")
-	public void test(@RequestParam("image") MultipartFile image) {
-	}
-
+	@ApiOperation("Add Car")
 	@PostMapping(produces = { "application/json", "application/xml" }, consumes = MediaType.ALL_VALUE)
 	public ResponseEntity<?> addCar(@RequestBody Car car) {
 
-//		System.out.println("KKKKKKKKKKKKKKKKKKKKKKKKKKK: " + image.getOriginalFilename());
 		Car newCar = this.carService.addCar(car);
 		if (newCar == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -55,6 +54,7 @@ public class CarController {
 		}
 	}
 
+	@ApiOperation("get all cars")
 	@GetMapping(value = "/cars", produces = { "application/json;charset=utf-8", "application/xml;charset=utf-8" })
 	public ResponseEntity<?> getAllCars() {
 		List<Car> cars = this.carService.getAllCars();
@@ -71,6 +71,7 @@ public class CarController {
 		}
 	}
 
+	@ApiOperation("Get all Cars pagination")
 	@GetMapping(value = "/cars_pagination", produces = { "application/json;charset=utf-8",
 			"application/xml;charset=utf-8" })
 	public ResponseEntity<PagedResources<Car>> getAllCarsPagination(
@@ -97,6 +98,7 @@ public class CarController {
 		}
 	}
 
+	@ApiOperation("Get all Cars pagination by Model")
 	@GetMapping(value = "/cars_pagination_by_model/{model}", produces = { "application/json;charset=utf-8",
 			"application/xml;charset=utf-8" })
 	public ResponseEntity<PagedResources<Car>> getAllCarsPaginationByModel(@PathVariable(value = "model") String model,
@@ -109,10 +111,8 @@ public class CarController {
 
 		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "modelo"));
 
-		// Page<Car> cars = this.carService.getAllCarsPagination(pageable);
 		Page<Car> cars = this.carService.getAllCarsPaginationByModel(model, pageable);
 		if (cars.isEmpty()) {
-			System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ ");
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
 
@@ -120,11 +120,11 @@ public class CarController {
 				Long idCar = car.getIdCar();
 				car.add(linkTo(methodOn(CarController.class).getOneCars(idCar)).withSelfRel());
 			}
-			System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
 			return new ResponseEntity<>(assembler.toResource(cars), HttpStatus.OK);
 		}
 	}
 
+	@ApiOperation("Get Car by ID")
 	@GetMapping(value = "/cars/{id}", produces = { "application/json", "application/xml" })
 	public ResponseEntity<?> getOneCars(@PathVariable(value = "id") Long id) {
 		Optional<Car> car = this.carService.getOneCar(id);
@@ -136,10 +136,10 @@ public class CarController {
 		}
 	}
 
+	@ApiOperation("Update Car by ID")
 	@PutMapping(value = "/cars/{id}", produces = { "application/json", "application/xml" }, consumes = {
 			"application/json", "application/xml" })
 	public ResponseEntity<?> updateCar(@PathVariable(value = "id") Long id, @RequestBody Car car) {
-		System.out.println("GGGGGGGGGGGGGGGG");
 		Car carExist = this.carService.updateCar(id, car);
 		if (carExist == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -148,6 +148,7 @@ public class CarController {
 		}
 	}
 
+	@ApiOperation("Delete Car by ID")
 	@DeleteMapping("/cars/{id}")
 	public void removeCar(@PathVariable(value = "id") Long id) {
 		this.carService.removeCar(id);

@@ -1,5 +1,0 @@
-package com.wcode.api_hateoas.models;
-
-public class Permission {
-
-}

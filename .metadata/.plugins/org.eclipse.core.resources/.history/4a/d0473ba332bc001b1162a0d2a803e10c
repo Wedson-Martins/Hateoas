@@ -1,0 +1,21 @@
+package com.wcode.api_hateoas.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wcode.api_hateoas.models.Image;
+import com.wcode.api_hateoas.repositories.ImageRepository;
+
+@Service
+public class ImageServiceImp implements ImageService {
+
+	@Autowired
+	ImageRepository imageRepository;
+
+	@Override
+	public void addAdressImage(String adress) {
+		Image img = new Image();
+		img.setAddress(adress);
+		this.imageRepository.save(img);
+	}
+}
